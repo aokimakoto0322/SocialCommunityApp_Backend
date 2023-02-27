@@ -1,0 +1,14 @@
+version: '3'
+services:
+  app:
+    build:
+      context: ./Docker/
+    tty: true
+    volumes:
+      - ./nextjs:/app/src/nextjs
+    working_dir: /app/src/nextjs
+    environment:
+     - WATCHPACK_POLLING=true
+    ports:
+      - "3000:3000"
+    command: sh -c "npm run dev"

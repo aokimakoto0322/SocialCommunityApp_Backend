@@ -20,7 +20,7 @@ services:
       context: ./Docker/react/
     volumes:
       - ./reactApp:/usr/src/app
-    # command: sh -c "yarn start"
+    command: sh -c "yarn start"
     ports:
       - "3001:3001"
     stdin_open: true 

@@ -4,3 +4,6 @@
 [submodule "reactApp"]
 	path = reactApp
 	url = https://github.com/aokimakoto0322/SocialCommunityApp_React.git
+[submodule "aspnetApp"]
+	path = aspnetApp
+	url = https://github.com/aokimakoto0322/SocialCommunityApp_ASP.NET.git

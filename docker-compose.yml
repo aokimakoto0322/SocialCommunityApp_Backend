@@ -1,5 +1,6 @@
 version: '3'
 services:
+  # nextjsの環境
   app:
     build:
       context: ./Docker/nextjs/
@@ -12,3 +13,16 @@ services:
     ports:
       - "3000:3000"
     command: sh -c "npm run dev"
+  
+  # reactの環境
+  react-app:
+    build:
+      context: ./Docker/react/
+    volumes:
+      - ./reactApp:/usr/src/app
+    # command: sh -c "yarn start"
+    ports:
+      - "3001:3001"
+    stdin_open: true 
+    environment:
+      - CHOKIDAR_USEPOLLING=true

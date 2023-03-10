@@ -27,6 +27,19 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
   
+  # vue.jsの環境
+  vue-app:
+    build:
+      context: ./Docker/vue
+    tty: true
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./vueApp:/usr/src/vue-socialapp
+    command: sh -c "cd vue-socialapp && npm run serve"
+    ports:
+      - "8080:8080"
+  
   # ASP.NETの環境
   aspnet:
     build:

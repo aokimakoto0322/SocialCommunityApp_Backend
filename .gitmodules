@@ -7,3 +7,6 @@
 [submodule "aspnetApp"]
 	path = aspnetApp
 	url = https://github.com/aokimakoto0322/SocialCommunityApp_ASP.NET.git
+[submodule "vueApp"]
+	path = vueApp
+	url = https://github.com/aokimakoto0322/SocialCommunityApp_Vue.git

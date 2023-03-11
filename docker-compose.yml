@@ -36,9 +36,9 @@ services:
       - NODE_ENV=development
     volumes:
       - ./vueApp:/usr/src/vue-socialapp
-    command: sh -c "cd vue-socialapp && npm run serve"
+    command: sh -c "cd vue-socialapp && npm run dev -- --host"
     ports:
-      - "8080:8080"
+      - "3002:3002"
   
   # ASP.NETの環境
   aspnet:

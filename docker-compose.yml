@@ -39,6 +39,21 @@ services:
     command: sh -c "cd vue-socialapp && npm run dev -- --host"
     ports:
       - "3002:3002"
+
+  # Nuxtjsの環境
+  nuxtjs-app:
+    build:
+      context: ./Docker/nuxtjs
+    tty: true
+    volumes:
+      - ./nuxtApp:/app
+    ports:
+      - "3003:3003"
+    environment:
+      - HOST=0.0.0.0
+      - port=80
+      - CHOKIDAR_USEPOLLING=true
+    command: sh -c "yarn && yarn dev -o"
   
   # ASP.NETの環境
   aspnet:

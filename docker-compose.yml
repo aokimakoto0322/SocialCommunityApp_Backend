@@ -1,0 +1,67 @@
+version: '3'
+services:
+  # nextjsの環境
+  nuxt-app:
+    build:
+      context: ./Docker/nextjs/
+    tty: true
+    volumes:
+      - ./nextjs:/app/src/nextjs
+    working_dir: /app/src/nextjs
+    environment:
+     - WATCHPACK_POLLING=true
+    ports:
+      - "3000:3000"
+    command: sh -c "npm run dev"
+  
+  # reactの環境
+  react-app:
+    build:
+      context: ./Docker/react/
+    volumes:
+      - ./reactApp:/usr/src/app
+    command: sh -c "yarn start"
+    ports:
+      - "3001:3001"
+    stdin_open: true 
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+  
+  # vue.jsの環境
+  vue-app:
+    build:
+      context: ./Docker/vue
+    tty: true
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./vueApp:/usr/src/vue-socialapp
+    command: sh -c "cd vue-socialapp && npm run dev -- --host"
+    ports:
+      - "3002:3002"
+
+  # Nuxtjsの環境
+  nuxtjs-app:
+    build:
+      context: ./Docker/nuxtjs
+    tty: true
+    volumes:
+      - ./nuxtApp:/app
+    ports:
+      - "3003:3003"
+    environment:
+      - HOST=0.0.0.0
+      - port=80
+      - CHOKIDAR_USEPOLLING=true
+    command: sh -c "yarn && yarn dev -o"
+  
+  # ASP.NETの環境
+  aspnet:
+    build:
+      context: ./Docker/aspnet
+    ports:
+      - 5000:5000
+    volumes:
+      - ./aspnetApp:/app
+    tty: true
+    command: dotnet run --urls http://0.0.0.0:5000

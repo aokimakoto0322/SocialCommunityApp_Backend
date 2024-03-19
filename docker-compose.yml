@@ -65,3 +65,21 @@ services:
       - ./aspnetApp:/app
     tty: true
     command: dotnet run --urls http://0.0.0.0:5000
+  
+  # jenkinsの環境構築
+  # jenkinsからnginxへのSSH接続
+  # ssh root@nginx
+  jenkins:
+    image: jenkins/jenkins:latest
+    volumes:
+      - ./volumes/jenkins_home:/var/jenkins_home
+    ports:
+      - 8080:8080
+    
+  # jenkinsのデプロイ先
+  nginx:
+    build:
+      context: ./Docker/nginx
+    ports:
+      - "80:80"
+      - "22:22"
